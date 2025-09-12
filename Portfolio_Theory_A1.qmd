@@ -25,7 +25,6 @@ link-citations: true
 
 ## Question 1: Asymptotic distribution of the estimated annualized Sharpe Ratio
 
-
 \fbox{%
 \parbox{0.85\textwidth}{%
 Show that the distribution of the estimated annualised Sharpe Ratio (SR) converges asymptotically as $y \to \infty$ to:
@@ -35,7 +34,6 @@ Show that the distribution of the estimated annualised Sharpe Ratio (SR) converg
 \]
 }%
 }
-
 
 ### Definitions and Notation
 
@@ -81,8 +79,7 @@ $$
 \text{Var}(\hat{\sigma}^2) \approx \frac{2\sigma^4}{T} 
 $$ {#eq-var_var}
 
-Thus, taking @eq-mu_var and @eq-var_var and considering the total number of observations $T = qy$, by the Central Limit Theorem, the distributions of $\hat{\mu}$ and $\hat{\sigma}^2$ converge asymptotically to Normal distributions. At this first stage, the CLT applies to sums of IID random variables, allowing us to get a joint asymptotic distribution for $\hat{\mu}$ and $\hat{\sigma}^2$ scaled by $T$.
-\
+Thus, taking @eq-mu_var and @eq-var_var and considering the total number of observations $T = qy$, by the Central Limit Theorem, the distributions of $\hat{\mu}$ and $\hat{\sigma}^2$ converge asymptotically to Normal distributions. At this first stage, the CLT applies to sums of IID random variables, allowing us to get a joint asymptotic distribution for $\hat{\mu}$ and $\hat{\sigma}^2$ scaled by $T$.\
 $$
 \sqrt{T}(\hat{\mu} - \mu) \overset{a}{\underset{T \to \infty}\sim} N(0, \sigma^2), \quad 
 \sqrt{T}(\hat{\sigma}^2 - \sigma^2) \overset{a}{\underset{T \to \infty}\sim} N(0, 2\sigma^4).
@@ -92,7 +89,7 @@ These asymptotic distributions allow us to approximate the estimation error of $
 
 ### Asymptotic Joint Distribution
 
-We can take @eq-CLT and for an asymptotic joint distribution of $\hat{\mu}$ and $\hat{\sigma}^2$. 
+We can take @eq-CLT and for an asymptotic joint distribution of $\hat{\mu}$ and $\hat{\sigma}^2$.
 
 $$
 \sqrt{\text{T}}\begin{bmatrix}
@@ -124,12 +121,11 @@ $$ {#eq-joint_v1}
 
 We apply the delta method to propagate the uncertainty from the estimators $\mu$ and $\sigma^2$ through the nonlinear function $g(\mu,\ \sigma^2) = SR$. This allows us to derive the asymptotic distribution of the Sharpe ratio estimator $\hat{SR}$ using the gradient of g and the covariance matrix of $\mu$ and $\sigma^2$ [@lo2002stats].
 
-First, we can re-write @eq-joint_v1 as 
+First, we can re-write @eq-joint_v1 as
 
 $$
 \sqrt{T}(\symbf{\hat{\theta}}-\symbf{\theta}) \overset{a}{\underset{T \to \infty}\sim} \text{N}(0, \symbf{\textbf{V}_\theta})
-$$ 
-Employing the delta method: 
+$$ Employing the delta method:
 
 $$
 \sqrt{T} \,\bigl(g(\symbf{\hat{\theta}})-g(\symbf{\theta})\bigr) 
@@ -141,7 +137,7 @@ $$
 \right)
 $$ {#eq-delta}
 
-Looking at just the variance term we can compute the gradient: 
+Looking at just the variance term we can compute the gradient:
 
 $$
 \frac{\partial g}{\partial \symbf{\theta}} =
@@ -169,8 +165,7 @@ $$
 \frac{\sqrt{q}}{\sigma} \\
 -\frac{\mu}{2\sigma^3} \sqrt{q}
 \end{bmatrix}.
-$$ 
-
+$$
 
 Taking this partial derivative and calculating the variance term for @eq-delta.
 
@@ -198,13 +193,12 @@ $$
 \dfrac{\sqrt{q}}{\sigma} \\
 -\dfrac{\mu}{2\sigma^3} \sqrt{q}
 \end{bmatrix}
-$$ 
+$$
 
 $$
 \left(\frac{\partial g}{\partial \symbf{\theta}} \right)^{\prime} \symbf{V}_{\theta}\frac{\partial g}{\partial \symbf{\theta}} 
 = q + \frac{q \mu^2}{2 \sigma^2} = q + \frac{SR^2}{2} = q \left(1 + \frac{SR^2}{2q} \right)
-$$ 
-Using @eq-SR we see that $SR = \frac{\mu}{\sigma}\sqrt{q}$ so $SR^2 = \frac{\mu^2}{\sigma^2}q$. We can substitute this back into @eq-delta and find the distribution for $\hat{SR}$, remember that $g(\symbf{\hat{\theta}}) = \hat{SR}$ and $g(\symbf{\theta}) = SR$ 
+$$ Using @eq-SR we see that $SR = \frac{\mu}{\sigma}\sqrt{q}$ so $SR^2 = \frac{\mu^2}{\sigma^2}q$. We can substitute this back into @eq-delta and find the distribution for $\hat{SR}$, remember that $g(\symbf{\hat{\theta}}) = \hat{SR}$ and $g(\symbf{\theta}) = SR$
 
 $$
 \sqrt{T} \bigl(\hat{SR}-SR\bigr) \overset{a}{\underset{T \to \infty}\sim} \text{N} \left(0, q \left(1 + \frac{SR^2}{2q} \right)\right)
@@ -215,9 +209,10 @@ $$
 \overset{a}{\underset{T \to \infty}\sim} \text{N} \left(
 SR,
 \frac{q \left(1 + \frac{SR^2}{2q}\right)}{T} \right)
-$$ 
+$$
 
 ### Annualisation
+
 Since $T = yq$, we express the asymptotic variance per year by switching the limiting argument from $T \to \infty$ to $y \to \infty$ to reflect the annualized Sharpe ratio. Writing the variance in terms of years makes it explicit that the uncertainty in the estimate decreases as the number of years of data grows, which is the meaningful timescale for investors.
 
 $$
@@ -225,20 +220,19 @@ $$
 \overset{a}{\underset{y\to \infty}\sim} \text{N} \left(
 SR,
 \frac{q \left(1 + \frac{SR^2}{2q}\right)}{qy} \right)
-$$ 
-
+$$
 
 $$
 \boxed{\hat{SR} 
 \overset{a}{\underset{y \to \infty}\sim} \text{N} \left(
 SR,
 \frac{1 + \frac{SR^2}{2q}}{y} \right)}
-$$ 
-The final asymptotic variance $\frac{1 + \frac{SR^2}{2q}}{y}$ shows two effects: (1) the variance shrinks with more years of data, and (2) higher Sharpe ratios increase estimation error slightly due to their dependence on both $\mu$ and $\sigma^2$.
+$$ The final asymptotic variance $\frac{1 + \frac{SR^2}{2q}}{y}$ shows two effects: (1) the variance shrinks with more years of data, and (2) higher Sharpe ratios increase estimation error slightly due to their dependence on both $\mu$ and $\sigma^2$.
 
 \newpage
 
 <!-- ------------------------------------------------------------- -->
+
 ## Question 2: Question 2: Expected Maximum of a Sample of IID Normal Variables
 
 \fbox{%
@@ -261,10 +255,17 @@ for some constant $\gamma$
 }%
 }
 
-To approximate the expected maximum of N i.i.d. Normal random variables, we proceed in three steps. First, we show that the Normal distribution is a von Mises function using Example 3.3.29 [@embrechts1997modelling]. By Proposition 3.3.25, every von Mises function lies in the maximum domain of attraction of the Gumbel distribution (MDA($\Lambda$)) [@embrechts1997modelling]. Second, by the Fisher–Tippett–Gnedenko theorem, this implies that the properly normalised sample maximum converges in distribution to the Gumbel law. Finally, applying Resnick’s Proposition (iii) on moment convergence, we obtain that the expectation of the normalised maximum converges to the Euler–Mascheroni constant $\gamma$ [@resnick1987extreme]. Together, these results yield the approximation $\mathbb{E} \approx \alpha + \gamma \beta$ with $\alpha$, $\beta$ being norming constants derived from the Normal distribution.
+To approximate the expected maximum of N i.i.d. Normal random variables, we proceed in three steps.
+
+Step 1: Show the Normal is von Mises. Using Example 3.3.29 [@embrechts1997modelling], we first verify that the standard Normal distribution is a von Mises function with auxiliary function $a(x)$.
+
+Step 2: Connect to the Gumbel MDA. By Proposition 3.3.25 [@embrechts1997modelling], any von Mises function belongs to the maximum domain of attraction of the Gumbel distribution (MDA($\Lambda$))Moreover, Proposition 3.3.28 [@embrechts1997modelling] shows that if two distributions are tail equivalent, they share the same MDA and norming constants. Together, these results guarantee that the maxima of a Normal sample, once properly normalized, converge in distribution to the Gumbel law, which is the Gumbel case of the Fisher–Tippett–Gnedenko theorem.
+
+Step 3: Convergence of moments.We apply Resnick’s Proposition (iii) on moment convergence, we obtain that the expectation of the normalised maximum converges to the Euler–Mascheroni constant $\gamma$ [@resnick1987extreme]. Together, these results yield the approximation $\mathbb{E}(x) \approx \alpha + \gamma \beta$ with $\alpha$, $\beta$ being norming constants derived from the Normal distribution.
 
 ### Definition of the von Mises Function
-Let F be a cumulative distribution function (CDF) with right endpoint $x_F$ is the largest possible value that the randomvariable $X$ can take (if it exists) or $+\infty$ if X is unbounded. 
+
+Let F be a cumulative distribution function (CDF) with right endpoint $x_F$ is the largest possible value that the random variable $X$ can take (if it exists) or $+\infty$ if X is unbounded.
 
 $$
 x_F = sup\{ x \in \mathbb{R}: F(x)<1 \} \in(-\infty, \infty]
@@ -294,49 +295,179 @@ Let $X~N(0,\ 1)$ with the cumulative distribution function $Z(x)$ and the probab
 
 $$
 \bar{Z}(x) = 1- Z(x)
-$$
-We are going to check the von Mises conditions to show that $\bar{F}(x)=\bar{Z}(x)$.
+$$ We are going to check the von Mises conditions to show that $\bar{F}(x)=\bar{Z}(x)$.
 
--   The standard normal is unbounded above, so $x_F = + \infty$. We can choose arbitrary $z = 0$ where $z<x_F$. 
+-   The standard normal is unbounded above, so $x_F = + \infty$. We can choose arbitrary $z = 0$ where $z<x_F$.
 
 -   We can define the auxilliary function as $$a(x)=\frac{\bar{Z(x)}}{\phi(x)}$$, where $\phi(x)>0$ and $\bar{Z}(x)>0$ for all x, so $a(x)>0$.
 
 -   Defining the normalising factor c(x):
+
     -   Using the von Mises representation, it suggests we can find $$c(x) = \bar{Z}(x)exp\left(-\int_z^x\frac{1}{a(t)} dt\right)$$
-    
-    -   To obtain the asymptotic form of the standard normal tail we apply L’Hôpital’s rule, this will give us Mills' Ratio. Firstly we check that the limits of the numerator and denominator of our proposed ratio $$\underset{x\to\infty}{lim}\frac{\bar{Z}(x)}{\frac{\phi(x)}{x}} \frac{\to 0}{\to 0}$$ Secondly, we find the first derivatives for the numerator and the denominator $$\underset{x\to\infty}{lim}\frac{\bar{Z}(x)}{\frac{\phi(x)}{x}} = \underset{x\to\infty}{lim}\frac{\frac{d}{dx}(\bar{Z}(x))}{\frac{d}{dx}\frac{\phi(x)}{x}} =  \underset{x\to\infty}{lim} \frac{\frac{d}{dx} (1-Z(x))}{\frac{\phi'(x) x - \phi(x)}{x^2}} = \underset{x\to\infty}{lim} \frac{-Z(x)}{\frac{-x \phi(x) \cdot x - \phi(x)}{x^2}} =$$ $$= \underset{x\to\infty}{lim} \frac{-\phi(x)}{-\phi(x) \left(1 + \frac{1}{x^2}\right)} = \underset{x\to\infty}{lim} \frac{-\phi(x)}{-\phi(x)} = 1$$ Therefore, we can use the following rates of change form instead of the raw values (i.e. Mills' Ratio) $$\bar{Z}(x) \sim \frac{\phi(x)}{x}$$
-    
-    -   We can apply Mills' Ratio $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x \to \infty$ meaning our auxiliary function becomes $$a(x)=\frac{\bar{Z(x)}}{\phi(x)}=\frac{\bar{\frac{\phi(x)}{x}}}{\phi(x)} \sim \frac{1}{x}$${#eq-aux}
-    
+
+    -   To obtain the asymptotic form of the standard normal tail we apply L’Hôpital’s rule, this will give us Mills' Ratio. Firstly we check that the limits of the numerator and denominator of our proposed ratio $$\underset{x\to\infty}{lim}\frac{\bar{Z}(x)}{\frac{\phi(x)}{x}} \frac{\to 0}{\to 0}$$ Secondly, we find the first derivatives for the numerator and the denominator $$\underset{x\to\infty}{lim}\frac{\bar{Z}(x)}{\frac{\phi(x)}{x}} = \underset{x\to\infty}{lim}\frac{\frac{d}{dx}(\bar{Z}(x))}{\frac{d}{dx}\frac{\phi(x)}{x}} =  \underset{x\to\infty}{lim} \frac{\frac{d}{dx} (1-Z(x))}{\frac{\phi'(x) x - \phi(x)}{x^2}} = \underset{x\to\infty}{lim} \frac{-Z'(x)}{\frac{-x \phi(x) \cdot x - \phi(x)}{x^2}} =$$ $$= \underset{x\to\infty}{lim} \frac{-\phi(x)}{-\phi(x) \left(1 + \frac{1}{x^2}\right)} = \underset{x\to\infty}{lim} \frac{-\phi(x)}{-\phi(x)} = 1$$ Therefore, we can use the following rates of change form instead of the raw values (i.e. Mills' Ratio) $$\bar{Z}(x) \sim \frac{\phi(x)}{x}\, \quad x\to \infty$$ {#eq-milli}
+
+    -   We can apply Mills' Ratio $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x \to \infty$ to our auxiliary function becomes $$a(x)=\frac{\bar{Z(x)}}{\phi(x)}=\frac{\bar{\frac{\phi(x)}{x}}}{\phi(x)} \sim \frac{1}{x}$$ {#eq-aux}
+
     -   Therefore solving for c(x) $$c(x) = \overline Z(x) \exp\Big(\int_z^x \frac{1}{a(t)} dt\Big) = \overline Z(x) \exp\Big(\int_z^x \frac{1}{\frac{1}{x}} dt\Big) = \frac{\varphi(x)}{x} \cdot \exp\Big(\frac{x^2}{2}\Big).$$ $$
-    c(x) = \frac{1}{\sqrt{2\pi}}exp\left({-\frac{x^2}{2}}\right)\frac{1}{x}\exp\Big(\frac{x^2}{2}\Big) =\frac{1}{x\sqrt{2\pi}} $$ Note that $c(x)>0$ as $x\to\infty$ for unbounded distributions like the normal, the slowly varying factor c(x) may converge to zero as long as it varies slower than the exponential decay.
+        c(x) = \frac{1}{\sqrt{2\pi}}exp\left({-\frac{x^2}{2}}\right)\frac{1}{x}\exp\Big(\frac{x^2}{2}\Big) =\frac{1}{x\sqrt{2\pi}} $$ Note that $c(x)>0$ as $x\to\infty$ for unbounded distributions like the normal, the slowly varying factor c(x) may converge to zero as long as it varies slower than the exponential decay.
 
 Therefore, with $a(x) \sim \frac{1}{x}$ and $c(x) \sim \frac{1}{x\sqrt{2\pi}}$, using @eq-von_mises we have
 
 $$
 \bar{Z}(x) \sim c(x) \exp\Bigg(-\int_z^x \frac{1}{a(t)}  dt \Bigg) 
 = \frac{1}{x \sqrt{2\pi}} \exp\Big(-\frac{x^2}{2}\Big))
-$$
-which is exactly the standard tail approximation (Mills' ratio) for the standard normal distribution. Since the standard normal distribution satisfies all the von Mises conditions we conclude that the standard normal distribution is a von Mises function.
+$$ which is exactly the standard tail approximation (Mills' ratio) for the standard normal distribution. Since the standard normal distribution satisfies all the von Mises conditions we conclude that the standard normal distribution is a von Mises function.
 
 ### Proposition 3.3.25: von Mises Functions and the Max-Domain of Attraction (MDA)
+
 Suppose the distribution function F is a von Mises function with auxiliary function $a(x)$. Then F belongs to the max-domain of attraction (MDA) of the Gumbel distribution.
 
--   Max-domain of attraction (MDA): This means that if $X_1,\ X_2,\ \dots X_N$ are IID random variables with distribution F, then the properly normalized maximum $$M_N := max\{ X_1,\ X_2,\ \dots X_N\} \overset{a}{\underset{N \to \infty}\sim} G$${#eq-MDA} Where G is the Gumbel distribution i.e. $F\in\text{MDA}(\Lambda)$
+-   Max-domain of attraction (MDA): This means that if $X_1,\ X_2,\ \dots X_N$, where $n=1, 2 \dots N$, are IID random variables with distribution F, then the properly normalized maximum $$M_N := max\{ X_1,\ X_2,\ \dots X_N\} \overset{a}{\underset{N \to \infty}\sim} G$$ {#eq-MDA} Where G is the Gumbel distribution i.e. $F\in\text{MDA}(\Lambda)$
 
--   A possible choice of norming constants for continous and strictly increasing distribution function like the normal distribution is: $$d_N:= F^{-1}\left(1-\frac{1}{N}\right)\, \quad c_N:= a(d_N)$$ where $a(x)$ is the auxiliary function of F. Then the normalized maximum satisfies $$\frac{M_N-d_N}{c_N} \overset{d}{\underset{N\to\infty}\to} G$$ where G is the standard Gumbel distribution with cdf $G(x) = exp(-e^{-x})$
+-   A possible choice of norming constants for continous and strictly increasing distribution function like the normal distribution is: $$d_N:= F^{-1}\left(1-\frac{1}{N}\right)\, \quad c_N:= a(d_N)$$ {#eq-norms} where $a(x)$ is the auxiliary function of F. Then the normalized maximum converges to $$\frac{M_N-d_N}{c_N} \overset{d}{\underset{n\to\infty}\to} G$$ {#eq-max} where G is the standard Gumbel distribution with cdf $G(x) = exp(-e^{-x})$
 
 ### Linking the von Mises–MDA Proposition to the Standard Normal Distribution
 
-We now apply Proposition 3.3.25 to the standard normal distribution $X \sim N(0,1)$. Since we have already shown from @eq-aux that $Z(x)$ is a von Mises function with auxiliary function $a(x)\sim \frac{1}{x}$ as $x\to \infty$, the standard normal belongs to the max-domain of attraction (MDA) of the Gumbel distribution i.e. $F \in \text{MDA}(\Lambda)$ @eq-MDA.
+We now apply Proposition 3.3.25 to the standard normal distribution $X \sim N(0,1)$. Since we have already shown from @eq-aux that $Z(x)$ is a von Mises function with auxiliary function $a(x)\sim \frac{1}{x}$ as $x\to \infty$, the standard normal belongs to the max-domain of attraction (MDA) of the Gumbel distribution i.e. $Z(x) \in \text{MDA}(\Lambda)$ @eq-MDA.
 
-We now calculate the norming constants:
-$d_n=(2ln(n))^{frac{1}{2}} - \frac{ln(ln(n))+ln(4\pi)}{2(2ln(n))^\frac{1}{2}}+O\left((ln(n))^\frac{1}{2}\right)$
-$c_n=(2ln(n))^{-\frac{1}{2}}$
+### Proposition 3.3.28: Closure Property of MDA under Tail Equivalence
 
-###
+Let $F$ and $H$ be two distribution functions with the same right endpoint $x_F = x_H$. Suppose $F$ belongs to the max-domain of attraction (MDA) $F\in\text{MDA}(\Lambda)$ with norming constants $(c_N >0, d_N\in \mathbb{R})$.
+
+Then $G$ also belongs to the same MDA with the same norming constants $(c_N, d_N)$, i.e.
+
+$$
+\underset{n\to\infty}{lim} F^n(c_n x+d_n) = \Lambda(x)\, \quad x \in \mathbb{R}
+$$ then $$
+\underset{n\to\infty}{lim} H^n(c_n x+d_n) = \Lambda(x+b)\, \quad x \in \mathbb{R}
+$$
+
+if and only if $F$ and $H$ are tail equivalent with
+
+$$
+\underset{x\to x_F}{lim} \frac{\bar{F}(x)}{\bar{H}(x)} = e^b
+$$ {#eq-tail}
+
+for some finite constant $b \in \mathbb{R}$
+
+### Applying the closure proposition
+
+Now that we have estabilished the standard normal belongs to the max-domain of attraction of the Gumbel Distribution, we need to compute the norming constants $d_N$ and $c_N$ to properly normalise the maximum $M_N$ i.e. @eq-max establishing the Gumbel limiting distribution for the standard normal maximum.
+
+First we acknowledge the usage of the L’Hôpital’s rule to give us @eq-milli showing that $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x\to\infty$, we further use the Proposition 3.3.28 to establish our usage of Mills' Ratio as an easier distribution to work with compared to the more complicated Inverse CDF i.e. $\bar{Z}(x)=1-Z(x)$of the standard normal distribution we would've worked with.
+
+So taking $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x\to\infty$ and denoting $\bar{H}(x) := \frac{\phi(x)}{x}$, we can see that $\bar{Z}$ and $\bar{H}$ are tail equivalent with
+
+$$
+\underset{x\to \infty}{lim} \frac{\bar{Z}(x)}{\bar{H}(x)} = \underset{x\to \infty}{lim} \frac{\frac{\phi(x)}{x}}{\frac{\phi(x)}{x}}= e^0 = 1 
+$$
+
+where $b=0$, therefore showing @eq-tail and allowing us to use the norming constants computed for $\bar{H}$ directly for $\bar{Z}$. This simplifies the calculation for $d_N$ and $c_N$ for the standard normal maximum and ensures that the asymptotic Gumbel approximation holds.
+
+### Calculation $d_N$ normalising constant
+
+From @eq-norms, we choose $d_N= H^{-1}\left(1-\frac{1}{N}\right)$. Intuitively, $d_n$ represents the level such that the probability of exceeding it is $\frac{1}{N}$, i.e., the level of the expected maximum in a sample of size n. Equivalently, we can rewrite this in terms of the survival function:
+
+$$
+\bar{H}(d_N) = \frac{1}{N} \quad \Rightarrow \quad -\text{ln}\ \bar{H}(d_N)=\text{ln}\ N
+$$
+
+For the tail of the normal distribution, $\bar{H}(x) = \frac{\phi(x)}{x} \sim \frac{1}{\sqrt{2\pi}x}e^{-\frac{x^2}{2}}$, so taking the logarithm gives
+
+$$
+-\text{ln}\ \bar{H}(d_N) = -\text{ln}\ \bar{H}(\frac{1}{\sqrt{2\pi}x}e^{-\frac{x^2}{2}})= \frac{1}{2}d^2_N + \text{ln}\ (d_N)+\frac{1}{2}\text{ln}\ 2\pi=\text{ln}\ N
+$$
+
+Now we can solve for $d_N$, but since this equation is non-linear, we'll find the asymptotic solution for large N using a Taylor expansion. The leading-order term $$
+ \frac{1}{2} d_N^2 \approx \ln N \quad \Rightarrow \quad d_N \sim \sqrt{2 \ln N}
+$$
+
+Including the next-order correction from $\ln(d_N) + \frac{1}{2}\ln(2\pi)$, we expand and solve asymptotically:
+
+$$
+d_N \approx \sqrt{2 \ln N} - \frac{\ln(\sqrt{2 \ln N}) + \frac{1}{2}\ln(2\pi)}{\sqrt{2 \ln N}}
+$$
+
+Simplifying the logarithms yields the refined expansion:
+
+$$
+d_N \approx \sqrt{2 \ln N} - \frac{\ln(\ln N) + \ln(4\pi)}{2 \sqrt{2 \ln N}} + O\left((\ln N)^{-1/2}\right) \approx \sqrt{2 \ln N} - \frac{\ln(\ln N) + \ln(4\pi)}{2 \sqrt{2 \ln N}}
+$$ {#eq-dn}
+
+### Calculation $c_N$ normalising constant
+
+From @eq-norms, we choose $c_N= a(d_N)$. Since $a(x)=\frac{1}{x}$ from @eq-aux, we therefore get
+
+$$
+c_N = a(d_N) =Z(d_N) \sim\frac{1}{\sqrt{2 \ln N}} = (2 \ln\ N)^{-\frac{1}{2}}
+$$ {#eq-cn}
+
+### Proposition (iii)
+
+Let $F = \Lambda$ and let $H$ have right endpoint $(x_F)$. Define the norming constants
+
+$$
+d_N = H^{-1}\left(1 - \frac{1}{N}\right), \quad c_N = a(d_N),
+$$
+
+If for some integer $(k > 0)$
+
+$$
+\int_{-\infty}^{x_H} |x|^k H(dx) < \infty,
+$$
+
+then
+
+$$
+\underset{n\to\infty}{lim}\mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^k\right] = \int_{-\infty}^{\infty} x^k  \Lambda(dx) = (-1)^k  \Gamma^{(k)}(1),
+$$ {#eq-prop3}
+
+where $\Gamma^{(k)}(1) = \gamma \approx 0.5772$ is the $k$-th derivative of the Gamma function evaluated at $x = 1$ which is Euler–Mascheroni constant.
+
+### Combined
+
+We can use @eq-max and @eq-prop3 to show the approximation to the normalized maximum of the standard normal
+
+$$
+\frac{M_N-d_N}{c_N}\overset{d}{\underset{n\to\infty}\rightarrow} G
+$$
+
+Using Proposition (iii) on momements @eq-prop3 to get the Gumbel limit where k=1
+
+$$
+\underset{N\to \infty}{lim} \mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^1\right] = \int_{-\infty}^{\infty} x^1  \Lambda(dx) = \Gamma^{(1)}(1) = \gamma
+$$
+
+Solving fro the $\mathbb{E}[M_N]$ we get the following
+
+$$
+\underset{N\to \infty}{lim} \mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^1\right] = \gamma \quad \Rightarrow \mathbb{E}[M_N]\approx d_N+c_N\gamma = (1-\gamma)d_N+\gamma(d_N+c_N)
+$$
+
+Remembering that $d_N = H^{-1}\left(1-\frac{1}{N}\right) = Z^{-1}\left(1-\frac{1}{N}\right)$ and $c_N = a(d_N) = \frac{1}{Z^{-1}\left(1-\frac{1}{N}\right)}$
+
+$$
+\mathbb{E}[M_N] = (1-\gamma)Z^{-1}\left(1-\frac{1}{N}\right)+\gamma\left(Z^{-1}\left(1-\frac{1}{N}\right)+\frac{1}{Z^{-1}\left(1-\frac{1}{N}\right)}\right)
+$$
+
+Equivalently,
+
+\fbox{%
+\parbox{0.85\textwidth}{%
+\[
+\mathbb{E}[M_N] 
+= (1-\gamma) Z^{-1}\!\left(1-\tfrac{1}{N}\right)
++ \gamma\, Z^{-1}\!\left(1-\tfrac{1}{N} e^{-1}\right)
+\]
+}%
+}
+
+The left-hand term is equivalent to the result @eq-dn i.e. $Z^{-1}\left(1-\frac{1}{N}\right) = d_N$, this tells us the size of the maximum. The right-hand term is equivalent to @eq-dn + @eq-cn i.e. $Z^{-1}!\left(1 - \frac{1}{N} e^{-1} \right) = d_N + c_N$, this gives the appropriate scaling of the maximum so that when we normalize $M_N$ it converges in distribution to a standard Gumbel.
+
 
 \newpage
 
 ## Question 3: Minimum Backtest Length to Avoid Overfitting
+
 \newpage
