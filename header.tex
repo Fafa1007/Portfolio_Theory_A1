@@ -1,0 +1,115 @@
+% header.tex - Formal assignment styling for Quarto
+
+%-------------------------------
+% Packages
+%-------------------------------
+\usepackage[utf8]{inputenc}      % UTF-8 support
+\usepackage{amsmath, amssymb}    % Math symbols
+\usepackage{float}                % Improved figure/table placement
+\usepackage{graphicx}             % Include images
+\usepackage{subcaption}           % Subfigures
+\usepackage{parskip}              % Paragraph spacing
+\usepackage{listings}             % Code listings
+\usepackage{xcolor}               % Colored text for code
+\usepackage{hyperref}             % Clickable links
+\usepackage{fancyhdr}             % Fancy headers/footers
+\usepackage{booktabs}             % Better tables
+\usepackage{tikz}                 % Diagrams
+\usetikzlibrary{arrows.meta,automata, positioning, calc}
+\usepackage{caption}              % Caption formatting
+\usepackage{bm}
+
+\usepackage{unicode-math}
+\setmainfont{Times New Roman}        % or whatever text font
+\setmathfont{Latin Modern Math}      % good default
+\setmathfont[version=bold]{Latin Modern Math} % ensures bold math works
+
+%-------------------------------
+% Code listing style for R
+%-------------------------------
+\lstset{
+  language=R,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{red},
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!10}
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  breaklines=true
+}
+
+%-------------------------------
+% Page layout adjustments
+%-------------------------------
+\setlength{\topmargin}{-10mm}
+\setlength{\oddsidemargin}{0mm}
+\setlength{\evensidemargin}{0mm}
+\setlength{\textheight}{21cm}
+\setlength{\textwidth}{15.5cm}
+\setlength{\parindent}{0mm}
+\setlength{\footskip}{1.5cm}
+\setlength{\headheight}{14.49998pt}
+
+%-------------------------------
+% Hyperlink styling
+%-------------------------------
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+%-------------------------------
+% Header and footer style
+%-------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+%-------------------------------
+% Section title formatting
+%-------------------------------
+\usepackage{titlesec}
+% Bold headings, no numbers
+\titleformat{\section}{\Large\bfseries}{}{0pt}{}       % Section
+\titleformat{\subsection}{\large\bfseries}{}{0pt}{}  % Subsection
+\titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{} % Subsubsection
+
+% Spacing before/after headings
+\titlespacing*{\section}{0pt}{1.5em}{1em}
+\titlespacing*{\subsection}{0pt}{1.25em}{0.75em}
+\titlespacing*{\subsubsection}{0pt}{0.8em}{0.5em}
+
+
+%-------------------------------
+% Title page placeholder (use in .qmd front matter)
+%-------------------------------
+% You can manually create a title page in the .qmd using markdown and images
+
+% Example:
+% \begin{titlepage}
+% \centering
+% \includegraphics[scale=0.38]{Figures/uct_logo.png}\\[0.8cm]
+% \LARGE University of Cape Town\\[1.5cm]
+% \Large Department of Statistical Sciences\\[0.5cm]
+% \LARGE \textbf{Portfolio Theory Assignment 1}\\
+% \end{titlepage}
+
+%-------------------------------
+% Force References on new page
+%-------------------------------
+% Add \newpage before # References in your .qmd
