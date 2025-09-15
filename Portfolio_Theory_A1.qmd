@@ -25,6 +25,7 @@ link-citations: true
 
 ## Question 1: Asymptotic distribution of the estimated annualized Sharpe Ratio
 
+\begin{center}
 \fbox{%
 \parbox{0.85\textwidth}{%
 Show that the distribution of the estimated annualised Sharpe Ratio (SR) converges asymptotically as $y \to \infty$ to:
@@ -34,6 +35,7 @@ Show that the distribution of the estimated annualised Sharpe Ratio (SR) converg
 \]
 }%
 }
+\end{center}
 
 ### Definitions and Notation
 
@@ -227,7 +229,9 @@ $$
 \overset{a}{\underset{y \to \infty}\sim} \text{N} \left(
 SR,
 \frac{1 + \frac{SR^2}{2q}}{y} \right)}
-$$ The final asymptotic variance $\frac{1 + \frac{SR^2}{2q}}{y}$ shows two effects: (1) the variance shrinks with more years of data, and (2) higher Sharpe ratios increase estimation error slightly due to their dependence on both $\mu$ and $\sigma^2$.
+$$ {#eq-sharpe_dist}
+
+The final asymptotic variance $\frac{1 + \frac{SR^2}{2q}}{y}$ shows two effects: (1) the variance shrinks with more years of data, and (2) higher Sharpe ratios increase estimation error slightly due to their dependence on both $\mu$ and $\sigma^2$.
 
 \newpage
 
@@ -235,6 +239,7 @@ $$ The final asymptotic variance $\frac{1 + \frac{SR^2}{2q}}{y}$ shows two effec
 
 ## Question 2: Question 2: Expected Maximum of a Sample of IID Normal Variables
 
+\begin{center}
 \fbox{%
 \parbox{0.85\textwidth}{%
 Motivate and justify the following approximation for large $N$:
@@ -254,6 +259,7 @@ E[\max_N] \approx (1-\gamma) Z^{-1}\left(1-\frac{1}{N}\right) + \gamma Z^{-1}\le
 for some constant $\gamma$
 }%
 }
+\end{center}
 
 To approximate the expected maximum of N i.i.d. Normal random variables, we proceed in three steps.
 
@@ -291,7 +297,7 @@ $$ {#eq-von_mises}
 
 ### Showing that the Normal Distribution is a von Mises Function
 
-Let $X~N(0,\ 1)$ with the cumulative distribution function $Z(x)$ and the probability density function $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$. Denote the survival function (tail) by
+Let $X \sim N(0,\ 1)$ with the cumulative distribution function $Z(x)$ and the probability density function $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$. Denote the survival function (tail) by
 
 $$
 \bar{Z}(x) = 1- Z(x)
@@ -299,7 +305,7 @@ $$ We are going to check the von Mises conditions to show that $\bar{F}(x)=\bar{
 
 -   The standard normal is unbounded above, so $x_F = + \infty$. We can choose arbitrary $z = 0$ where $z<x_F$.
 
--   We can define the auxilliary function as $$a(x)=\frac{\bar{Z(x)}}{\phi(x)}$$, where $\phi(x)>0$ and $\bar{Z}(x)>0$ for all x, so $a(x)>0$.
+-   We can define the auxilliary function as $$a(x)=\frac{\bar{Z(x)}}{\phi(x)}$$ where $\phi(x)>0$ and $\bar{Z}(x)>0$ for all x, so $a(x)>0$.
 
 -   Defining the normalising factor c(x):
 
@@ -309,15 +315,17 @@ $$ We are going to check the von Mises conditions to show that $\bar{F}(x)=\bar{
 
     -   We can apply Mills' Ratio $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x \to \infty$ to our auxiliary function becomes $$a(x)=\frac{\bar{Z(x)}}{\phi(x)}=\frac{\bar{\frac{\phi(x)}{x}}}{\phi(x)} \sim \frac{1}{x}$$ {#eq-aux}
 
-    -   Therefore solving for c(x) $$c(x) = \overline Z(x) \exp\Big(\int_z^x \frac{1}{a(t)} dt\Big) = \overline Z(x) \exp\Big(\int_z^x \frac{1}{\frac{1}{x}} dt\Big) = \frac{\varphi(x)}{x} \cdot \exp\Big(\frac{x^2}{2}\Big).$$ $$
-        c(x) = \frac{1}{\sqrt{2\pi}}exp\left({-\frac{x^2}{2}}\right)\frac{1}{x}\exp\Big(\frac{x^2}{2}\Big) =\frac{1}{x\sqrt{2\pi}} $$ Note that $c(x)>0$ as $x\to\infty$ for unbounded distributions like the normal, the slowly varying factor c(x) may converge to zero as long as it varies slower than the exponential decay.
+    -   Therefore solving for c(x) $$c(x) \sim\overline Z(x) \exp\Big(\int_z^x \frac{1}{a(t)} dt\Big) \sim \overline Z(x) \exp\Big(\int_z^x \frac{1}{\frac{1}{x}} dt\Big) \sim \frac{\varphi(x)}{x} \cdot \exp\Big(\frac{x^2}{2}\Big).$$ $$
+        c(x) \sim \frac{1}{\sqrt{2\pi}}\text{exp}\left({-\frac{x^2}{2}}\right)\frac{1}{x}\exp\Big(\frac{x^2}{2}\Big) \sim\frac{1}{x\sqrt{2\pi}} $$ Note that $c(x)>0$ can go to zero as $x\to\infty$ for unbounded distributions like the normal, however as long as it varies slower than the exponential decay i.e. the exponetial term on the right-hand side of @eq-von_mises.
 
 Therefore, with $a(x) \sim \frac{1}{x}$ and $c(x) \sim \frac{1}{x\sqrt{2\pi}}$, using @eq-von_mises we have
 
 $$
 \bar{Z}(x) \sim c(x) \exp\Bigg(-\int_z^x \frac{1}{a(t)}  dt \Bigg) 
-= \frac{1}{x \sqrt{2\pi}} \exp\Big(-\frac{x^2}{2}\Big))
-$$ which is exactly the standard tail approximation (Mills' ratio) for the standard normal distribution. Since the standard normal distribution satisfies all the von Mises conditions we conclude that the standard normal distribution is a von Mises function.
+\sim \frac{1}{x \sqrt{2\pi}} \exp\Big(-\frac{x^2}{2}\Big) 
+$$
+
+which is exactly the standard tail approximation (Mills' ratio @eq-milli i.e. $\bar{Z}(x)\sim\frac{\phi(x)}{x}\sim\frac{\frac{1}{x \sqrt{2\pi}} \exp\Big(-\frac{x^2}{2}\Big)}{x}$) for the standard normal distribution and we further show that $c(x)\sim\frac{1}{x\sqrt{2\pi}}$ decays much slower than the exponential decay i.e. $\text{exp}\left(-\frac{x^2}{2}\right)$ as $x\to\infty$. Since the standard normal distribution satisfies all the von Mises conditions we conclude that the standard normal distribution is a von Mises function.
 
 ### Proposition 3.3.25: von Mises Functions and the Max-Domain of Attraction (MDA)
 
@@ -325,7 +333,7 @@ Suppose the distribution function F is a von Mises function with auxiliary funct
 
 -   Max-domain of attraction (MDA): This means that if $X_1,\ X_2,\ \dots X_N$, where $n=1, 2 \dots N$, are IID random variables with distribution F, then the properly normalized maximum $$M_N := max\{ X_1,\ X_2,\ \dots X_N\} \overset{a}{\underset{N \to \infty}\sim} G$$ {#eq-MDA} Where G is the Gumbel distribution i.e. $F\in\text{MDA}(\Lambda)$
 
--   A possible choice of norming constants for continous and strictly increasing distribution function like the normal distribution is: $$d_N:= F^{-1}\left(1-\frac{1}{N}\right)\, \quad c_N:= a(d_N)$$ {#eq-norms} where $a(x)$ is the auxiliary function of F. Then the normalized maximum converges to $$\frac{M_N-d_N}{c_N} \overset{d}{\underset{n\to\infty}\to} G$$ {#eq-max} where G is the standard Gumbel distribution with cdf $G(x) = exp(-e^{-x})$
+-   A possible choice of norming constants for continous and strictly increasing distribution function like the normal distribution is: $$d_N:= F^{-1}\left(1-\frac{1}{N}\right)\, \quad c_N:= a(d_N)$$ {#eq-norms} where $a(x)$ is the auxiliary function of F. Then the normalized maximum converges to $$\frac{M_N-d_N}{c_N} \overset{d}{\underset{N\to\infty}\to} G$$ {#eq-max} where G is the standard Gumbel distribution with cdf $G(x) = exp(-e^{-x})$
 
 ### Linking the von Mises–MDA Proposition to the Standard Normal Distribution
 
@@ -338,9 +346,11 @@ Let $F$ and $H$ be two distribution functions with the same right endpoint $x_F 
 Then $G$ also belongs to the same MDA with the same norming constants $(c_N, d_N)$, i.e.
 
 $$
-\underset{n\to\infty}{lim} F^n(c_n x+d_n) = \Lambda(x)\, \quad x \in \mathbb{R}
-$$ then $$
-\underset{n\to\infty}{lim} H^n(c_n x+d_n) = \Lambda(x+b)\, \quad x \in \mathbb{R}
+\underset{n\to\infty}{lim} F^n(c_N x+d_N) = \Lambda(x)\, \quad x \in \mathbb{R}
+$$ then
+
+$$
+\underset{N\to\infty}{lim} H^N(c_N x+d_N) = \Lambda(x+b)\, \quad x \in \mathbb{R}
 $$
 
 if and only if $F$ and $H$ are tail equivalent with
@@ -355,7 +365,7 @@ for some finite constant $b \in \mathbb{R}$
 
 Now that we have estabilished the standard normal belongs to the max-domain of attraction of the Gumbel Distribution, we need to compute the norming constants $d_N$ and $c_N$ to properly normalise the maximum $M_N$ i.e. @eq-max establishing the Gumbel limiting distribution for the standard normal maximum.
 
-First we acknowledge the usage of the L’Hôpital’s rule to give us @eq-milli showing that $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x\to\infty$, we further use the Proposition 3.3.28 to establish our usage of Mills' Ratio as an easier distribution to work with compared to the more complicated Inverse CDF i.e. $\bar{Z}(x)=1-Z(x)$of the standard normal distribution we would've worked with.
+First we acknowledge the usage of the L’Hôpital’s rule to give us @eq-milli showing that $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x\to\infty$. We apply Proposition 3.3.28 to justify replacing the standard normal tail $\bar{Z}(x)=1-Z(x)$, a more complicated function, with the simplier Mills' ratio $\bar{H}(x) = \frac{\pi(x)}{x}$, which is tail equivalent. This simplifies the calculation of the norming constants $d_N$ and $c_N$ for the maximum.
 
 So taking $\bar{Z}(x) \sim \frac{\phi(x)}{x}$ as $x\to\infty$ and denoting $\bar{H}(x) := \frac{\phi(x)}{x}$, we can see that $\bar{Z}$ and $\bar{H}$ are tail equivalent with
 
@@ -363,27 +373,49 @@ $$
 \underset{x\to \infty}{lim} \frac{\bar{Z}(x)}{\bar{H}(x)} = \underset{x\to \infty}{lim} \frac{\frac{\phi(x)}{x}}{\frac{\phi(x)}{x}}= e^0 = 1 
 $$
 
-where $b=0$, therefore showing @eq-tail and allowing us to use the norming constants computed for $\bar{H}$ directly for $\bar{Z}$. This simplifies the calculation for $d_N$ and $c_N$ for the standard normal maximum and ensures that the asymptotic Gumbel approximation holds.
+where $b=0$, therefore showing @eq-tail and allowing us to use the norming constants computed for $\bar{H}$ directly for $\bar{Z}$ i.e.
+
+$$
+\bar{Z}(x) \sim \bar{H}(x)
+$$ {#eq-H_Z}
+
+where $x \to \infty$. This simplifies the calculation for $d_N$ and $c_N$ for the standard normal maximum and ensures that the asymptotic Gumbel approximation holds.
 
 ### Calculation $d_N$ normalising constant
 
-From @eq-norms, we choose $d_N= H^{-1}\left(1-\frac{1}{N}\right)$. Intuitively, $d_n$ represents the level such that the probability of exceeding it is $\frac{1}{N}$, i.e., the level of the expected maximum in a sample of size n. Equivalently, we can rewrite this in terms of the survival function:
+From @eq-norms, we choose $d_N= H^{-1}\left(1-\frac{1}{N}\right)$. Intuitively, $d_n$ represents the level such that the probability of exceeding it is $\frac{1}{N}$, i.e., the level of the expected maximum in a sample of size N. Equivalently, we can express this using the survival function $\bar{H}(x):= 1-H(x)$ which gives us gives the probability of exceeding a value $x$:
 
 $$
-\bar{H}(d_N) = \frac{1}{N} \quad \Rightarrow \quad -\text{ln}\ \bar{H}(d_N)=\text{ln}\ N
+\bar{H}(d_N) = 1- H(d_N)= \frac{1}{N}
 $$
 
-For the tail of the normal distribution, $\bar{H}(x) = \frac{\phi(x)}{x} \sim \frac{1}{\sqrt{2\pi}x}e^{-\frac{x^2}{2}}$, so taking the logarithm gives
+Taking the negative logarithm of both sides, we obtain
 
 $$
--\text{ln}\ \bar{H}(d_N) = -\text{ln}\ \bar{H}(\frac{1}{\sqrt{2\pi}x}e^{-\frac{x^2}{2}})= \frac{1}{2}d^2_N + \text{ln}\ (d_N)+\frac{1}{2}\text{ln}\ 2\pi=\text{ln}\ N
+-\text{ln}\ \bar{H}(d_N)= -\text{ln} \Big(\frac{1}{N}\Big) = \text{ln}\ N
 $$
 
-Now we can solve for $d_N$, but since this equation is non-linear, we'll find the asymptotic solution for large N using a Taylor expansion. The leading-order term $$
+This step shows explicitly how the survival function transforms the original inverse CDF condition into a logarithmic equation, which is convenient for solving $d_N$ asymptotically.
+
+For the tail of the normal distribution, $\bar{H}(x) = \frac{\phi(x)}{x} = \frac{1}{\sqrt{2\pi}x}e^{-\frac{x^2}{2}}$, so taking the logarithm and using its properties gives
+
+$$
+-\text{ln}\ \bar{H}(d_N) = \frac{1}{\sqrt{2\pi}d_N}e^{-\frac{d_N^2}{2}} = -\left[-\frac{d_N^2}{2}-\text{ln}(\sqrt{2\pi}d_N\right]
+$$
+
+Finally, we can split the log to obtain
+
+$$
+-\text{ln}\ \bar{H}(d_N)= \frac{1}{2}d^2_N + \text{ln}\ (d_N)+\frac{1}{2}\text{ln}\ 2\pi
+$$
+
+Now we can solve for $d_N$, but since this equation is non-linear, we'll find the asymptotic solution for large N using a Taylor expansion. The leading-order term
+
+$$
  \frac{1}{2} d_N^2 \approx \ln N \quad \Rightarrow \quad d_N \sim \sqrt{2 \ln N}
 $$
 
-Including the next-order correction from $\ln(d_N) + \frac{1}{2}\ln(2\pi)$, we expand and solve asymptotically:
+Including the next-order correction from $\ln(d_N) + \frac{1}{2} \ln(2\pi)$, we expand the equation and solve for $d_N$ asymptotically:
 
 $$
 d_N \approx \sqrt{2 \ln N} - \frac{\ln(\sqrt{2 \ln N}) + \frac{1}{2}\ln(2\pi)}{\sqrt{2 \ln N}}
@@ -392,26 +424,42 @@ $$
 Simplifying the logarithms yields the refined expansion:
 
 $$
-d_N \approx \sqrt{2 \ln N} - \frac{\ln(\ln N) + \ln(4\pi)}{2 \sqrt{2 \ln N}} + O\left((\ln N)^{-1/2}\right) \approx \sqrt{2 \ln N} - \frac{\ln(\ln N) + \ln(4\pi)}{2 \sqrt{2 \ln N}}
+d_N \approx \sqrt{2 \ln N} - \frac{\ln(\ln N) + \ln(4\pi)}{2 \sqrt{2 \ln N}} + O\left((\ln N)^{-1/2}\right) 
+$$
+
+where the $O\left((\ln N)^{-1/2}\right)$ term represents higher-order terms in the asymptotic expansion, i.e., terms that are smaller than the retained correction and vanish relative to the main terms as $N\to \infty$.
+
+Since these higher-order contributions are negligible for large N, we often drop them, leaving the practical approximation:
+
+$$
+d_N \approx \sqrt{2 \ln N} - \frac{\ln(\ln N) + \ln(4\pi)}{2 \sqrt{2 \ln N}}
 $$ {#eq-dn}
+
+This shows explicitly that the leading-order term $\sqrt{2\text{ln}\ N}$ dominates, the next-order logarithmic correction refines the approximation, and all remaining terms fall away asymptotically.
 
 ### Calculation $c_N$ normalising constant
 
-From @eq-norms, we choose $c_N= a(d_N)$. Since $a(x)=\frac{1}{x}$ from @eq-aux, we therefore get
+From @eq-norms, we choose $c_N= a(d_N)$. Since $a(x)\sim \frac{1}{x}$ as $x\to \infty$ from @eq-aux, we can use the leading order term for $d_N\sim \sqrt{2\text{ln}\ N}$ we therefore get
 
 $$
-c_N = a(d_N) =Z(d_N) \sim\frac{1}{\sqrt{2 \ln N}} = (2 \ln\ N)^{-\frac{1}{2}}
+c_N = a(d_N) \sim \frac{1}{d_N} \sim \frac{1}{\sqrt{2 \ln N}} = (2 \ln\ N)^{-\frac{1}{2}}
 $$ {#eq-cn}
 
-### Proposition (iii)
+### Proposition (iii): Convergence of Normalized Moments in the Gumbel MDA
 
-Let $F = \Lambda$ and let $H$ have right endpoint $(x_F)$. Define the norming constants
+Let $X_1, X_2 \dots X_N$ be i.i.d random variables with common distribution function $H$ with a right endpoint $(x_F)$. Let
+
+$$
+M_N := max\{ X_1,\ X_2,\ \dots X_N\} \overset{a}{\underset{N \to \infty}\sim}
+$$
+
+denote the sample maximum. Define the norming constants
 
 $$
 d_N = H^{-1}\left(1 - \frac{1}{N}\right), \quad c_N = a(d_N),
 $$
 
-If for some integer $(k > 0)$
+where $a(X)$ is the auxiliary function of H. If for some integer $(k > 0)$
 
 $$
 \int_{-\infty}^{x_H} |x|^k H(dx) < \infty,
@@ -425,7 +473,7 @@ $$ {#eq-prop3}
 
 where $\Gamma^{(k)}(1) = \gamma \approx 0.5772$ is the $k$-th derivative of the Gamma function evaluated at $x = 1$ which is Euler–Mascheroni constant.
 
-### Combined
+### Application to the Standard Normal Maximum
 
 We can use @eq-max and @eq-prop3 to show the approximation to the normalized maximum of the standard normal
 
@@ -436,38 +484,146 @@ $$
 Using Proposition (iii) on momements @eq-prop3 to get the Gumbel limit where k=1
 
 $$
-\underset{N\to \infty}{lim} \mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^1\right] = \int_{-\infty}^{\infty} x^1  \Lambda(dx) = \Gamma^{(1)}(1) = \gamma
+\underset{N\to \infty}{lim} \mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^1\right] \approx \int_{-\infty}^{\infty} x^1  \Lambda(dx) \approx \Gamma^{(1)}(1) \approx \gamma
 $$
 
-Solving fro the $\mathbb{E}[M_N]$ we get the following
+Solving for the $\mathbb{E}[M_N]$ we get the following
 
 $$
-\underset{N\to \infty}{lim} \mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^1\right] = \gamma \quad \Rightarrow \mathbb{E}[M_N]\approx d_N+c_N\gamma = (1-\gamma)d_N+\gamma(d_N+c_N)
+\underset{N\to \infty}{lim} \mathbb{E}\left[\left(\frac{M_N - d_N}{c_N}\right)^1\right] \approx \gamma \quad \Rightarrow \mathbb{E}[M_N]\approx d_N+c_N\gamma \approx (1-\gamma)d_N+\gamma(d_N+c_N)
 $$
 
-Remembering that $d_N = H^{-1}\left(1-\frac{1}{N}\right) = Z^{-1}\left(1-\frac{1}{N}\right)$ and $c_N = a(d_N) = \frac{1}{Z^{-1}\left(1-\frac{1}{N}\right)}$
+Remembering that $d_N = H^{-1}\left(1-\frac{1}{N}\right) = Z^{-1}\left(1-\frac{1}{N}\right)$ from @eq-norms and using the result of the closure property @eq-H_Z. Also from @eq-norms $c_N = a(d_N) = \frac{1}{Z^{-1}\left(1-\frac{1}{N}\right)}$
 
 $$
-\mathbb{E}[M_N] = (1-\gamma)Z^{-1}\left(1-\frac{1}{N}\right)+\gamma\left(Z^{-1}\left(1-\frac{1}{N}\right)+\frac{1}{Z^{-1}\left(1-\frac{1}{N}\right)}\right)
+\mathbb{E}[M_N] \approx (1-\gamma)Z^{-1}\left(1-\frac{1}{N}\right)+\gamma\left(Z^{-1}\left(1-\frac{1}{N}\right)+\frac{1}{Z^{-1}\left(1-\frac{1}{N}\right)}\right)
 $$
 
 Equivalently,
 
-\fbox{%
-\parbox{0.85\textwidth}{%
-\[
-\mathbb{E}[M_N] 
-= (1-\gamma) Z^{-1}\!\left(1-\tfrac{1}{N}\right)
-+ \gamma\, Z^{-1}\!\left(1-\tfrac{1}{N} e^{-1}\right)
-\]
-}%
-}
+$$
+\boxed{\mathbb{E}[M_N] 
+\approx (1-\gamma) Z^{-1}\!\left(1-\tfrac{1}{N}\right)
++ \gamma\, Z^{-1}\!\left(1-\tfrac{1}{N} e^{-1}\right)}
+$$ {#eq-Emax}
 
-The left-hand term is equivalent to the result @eq-dn i.e. $Z^{-1}\left(1-\frac{1}{N}\right) = d_N$, this tells us the size of the maximum. The right-hand term is equivalent to @eq-dn + @eq-cn i.e. $Z^{-1}!\left(1 - \frac{1}{N} e^{-1} \right) = d_N + c_N$, this gives the appropriate scaling of the maximum so that when we normalize $M_N$ it converges in distribution to a standard Gumbel.
-
+The left-hand term is equivalent to the result @eq-dn i.e. $Z^{-1}\left(1-\frac{1}{N}\right) = d_N$, this tells us the size of the maximum. The right-hand term is equivalent to @eq-dn + @eq-cn i.e. $Z^{-1}\left(1 - \frac{1}{N} e^{-1} \right) \sim d_N + c_N$, this gives the appropriate scaling of the maximum so that when we normalize $M_N$ it converges in distribution to a standard Gumbel. Calculating $d_N$ and $c_N$ is crucial because it grounds the general limit theorem in the specific case of the Normal distribution and makes the result practically useful. These constants let us explicitly approximate $\mathbb{E}[M_N]$, turning a purely theoretical Gumbel convergence (as guaranteed by the Fisher–Tippett–Gnedenko theorem) into a concrete formula that quantifies both the location of the maximum and the scale of its fluctuations
 
 \newpage
 
 ## Question 3: Minimum Backtest Length to Avoid Overfitting
+
+\begin{center}
+\fbox{%
+\parbox{0.85\textwidth}{%
+Derive and discuss the minimum back test length $T_{min}:$
+
+$\textbf{Theorem 1.2.}$ The minimum back test length $T_{min}$ needed to avoid selecting a strategy with an in-sample Sharpe Ratio  as the average $\mathbb{E}[max_N]$ among N independent strategies with an out-of-sample Sharpe Ratio of zero is:
+
+\[
+T_{min}<\frac{2\text{ln}\ (N)}{\mathbb{E}[\mathbb{E}[max_N]]^2}
+\]
+
+This shows that the minimum backtest length grows as the analyst tries more independent configurations of the model so as to keep the Sharpe Ratio at a given level. The key point here: the analyst that does not report the number of simulations used to select a particular strategy configuration makes it very dificult to assess the overall risk of strategy overfitting
+
+}%
+}
+\end{center}
+
+### Null Hypothesis
+
+The goal of Theorem 1.2 is to determine the minimum backtest length required to avoid selecting a strategy that only appears profitable due to chance. In practice, researchers test many candidate strategies and naturally choose the one with the highest in-sample Sharpe ratio. If none of the strategies has genuine skill, this maximum Sharpe ratio arises purely from noise.
+
+To capture this scenario, we impose the null hypothesis:
+
+$$
+H_0: SR=0
+$$
+
+### Relating the Maximum Sharpe Ratio to the Maximum of Normal Random Variables
+
+From Question 1 result @eq-sharpe_dist we know that the annualised Sharpe ratio estimator satisfies:
+
+$$
+\hat{SR} 
+\overset{a}{\underset{y \to \infty}\sim} \text{N} \left(
+SR,
+\frac{1 + \frac{SR^2}{2q}}{y} \right)
+$$
+
+Under $H_0: SR=0$, this simplifies to
+
+$$
+\hat{SR} 
+\overset{a}{\underset{y \to \infty}\sim} \text{N} \left(
+0, \frac{1 + \frac{0}{2q}}{y} \right) \overset{a}{\underset{y \to \infty}\sim} \text{N} \left(
+0, \frac{1}{y} \right) 
+$$
+
+Thus any nonzero in-sample Sharpe ratio is entirely due to sampling variability. We can then rescale $\hat{SR}$ by $\sqrt{y}$:
+
+$$
+Z:=\sqrt{y}\hat{SR}\sim N(0,1)
+$$ {#eq-Z}
+
+Thus, each estimated Sharpe ratio under the null can be represented as a standard normal variable scaled by $\frac{1}{\sqrt{y}}$. 
+
+Now suppose we evaluate N independent strategies under the null, each estimated Sharpe ratio has the form
+
+$$
+\hat{SR_i} = \frac{Z_i}{\sqrt{y}}\, \quad  Z-i\sim N(0, 1)
+$$
+
+so the in-sample maximum Sharpe ratio across strategies the N strategies can be written as
+
+$$
+\underset{1\le i \le N}{max} \hat{SR} = \frac{1}{\sqrt{y}} \underset{1\le i \le N}{max} Z_i
+$$
+
+This expression makes explicit how the problem of evaluating the maximum estimated Sharpe ratio reduces to the classical problem of the maximum of $N$ standard normal random variables, already solved in Question 2. Therefore, the expected maximum Sharpe ratio under the null can be written to highlight the two layers of expectation:
+
+$$
+\mathbb{E}\Big[\underbrace{\max_i \hat{SR}_i}_{\text{\shortstack{outer expectation over \\ Sharpe samples}}}\Big] 
+= \frac{1}{\sqrt{y}}\, \mathbb{E}\Big[\underbrace{\max_i Z_i}_{\text{\shortstack{inner expectation from extreme-value \\ distribution of standard normals $Z_i$}}}\Big] 
+= \frac{1}{\sqrt{y}}\, \mathbb{E}\big[\mathbb{E}[M_N]\big]
+$$ {#eq-Emax_sharpe}
+
+where $M_N:= \underset{1 \le i \le N}Z_i$ and $Z_i\sim N(0,1)$. Note the following:
+
+-   The inner expectation $\mathbb{E}[M_N]$ comes from the extreme-value approximation for the maximum of N IID standard normals, using the normalising constants $d_N$ at @eq-dn and $c_N$ at @eq-cn together with the approximation for $\mathbb{E}[M_N]$ at @eq-Emax.
+
+-   The outer expectation accounts for the sampling variability of $\hat{SR}$ itselt, which under the null scales like $\frac{1}{\sqrt{y}}$
+
+This bridge between the two proofs is crucial, because it lets us transfer the extreme-value asymptotics from Question 2 into the analysis of the expected in-sample Sharpe ratio across N strategies. 
+
+
+### Deriving the Minimum Backtest Length $T_{min}$
+
+The next step is to use the relationship between the expected maximum Sharpe ratio and the sample length to determine the minimum backtest length needed to avoid selecting a purely lucky strategy. We can rearrange @eq-Emax_sharpe to solve for the number of years of data $y$ which gives
+
+$$
+y = \frac{\mathbb{E}\big[\mathbb{E}[M_N]\big]}{(\mathbb{E}[\underset{i}{max} \hat{SR}_i])^2}
+$$
+
+To obtain a conservative bound for the minimum backtest length $T_{min}$ we make 3 key substitutions:
+
+1.    Substitute y with $T_{min}$ because we are solving for the minimum number of years of data required such that the expected maximum Sharpe ratio is not artificially large under the null hypothesis due to random luck.
+
+2.    Substitute the numerator $\mathbb{E}\big[\mathbb{E}[M_N]\big]$ with the upper bound $\sqrt{2\text{ln}\ N}$ because using our final result from Question 2 @eq-max, we see that $$\mathbb{E}[M_N]\approx (1-\gamma) Z^{-1}\!\left(1-\tfrac{1}{N}\right) + \gamma\, Z^{-1}\!\left(1-\tfrac{1}{N} e^{-1}\right)$$ $$\mathbb{E}[M_N] \approx (1-\gamma) d_N + \gamma(d_N+c_N) \approx d_N + \gamma c_N $$ Both the $d_N$ and $d_N+c_N$ have the same dominant, leading terms of $\sqrt{2\text{ln} N}$ but with slightly different correction terms, which vanish asymptotically compared to the dominant term. Putting this together $$Z^{-1}\!\left(1-\tfrac{1}{N}\right) \sim Z^{-1}\left(1-\tfrac{1}{N} e^{-1}\right) \sim \sqrt{2\text{ln} N}$$ When substituting $\sqrt{2\text{ln}\ N}$ into the numerator of the $T_{min}$ formula, we want an effective asymptotic ceiling that the expected maximum cannot grow faster than. $$\mathbb{E}[M_N] \lesssim \sqrt{2\text{ln}\ N} \Rightarrow \mathbb{E}[\mathbb{E}[M_N]] \lesssim \sqrt{2\text{ln}\ N} $$ The $\lesssim$ turns into a strict $\less$ in practice because using the ceiling slightly overestimates the true expectation, meaning the actual required backtest length is strictly less than the bound computed. This turns the equality into an inequality of: $$ T_{min} \less \frac{2\ln N}{(\mathbb{E}[\max_i \hat{SR}_i])^2}.$$
+
+
+3.    Substitute the denominator $\mathbb{E}[\underset{i}{max} \hat{SR}_i]$ with $\mathbb{E}\big[\mathbb{E}[M_N]\big]$ because under the null $H_0: SR=0$, the observed in-sample Sharpe ratio that drives selection bias is precisely given by the scaled expected maximum across the N strategies shown by @eq-Emax_sharpe i.e. $$ T_{min} \less \frac{2\ln N}{(\frac{1}{\sqrt{y}}\, \mathbb{E}\big[\mathbb{E}[M_N]\big])^2} =  \frac{2\ln N}{(\mathbb{E}\big[\mathbb{E}[M_N]\big])^2} y $$ Here, y acts purely as a scaling factor. Since we are primarily interested in a conservative ceiling for the expected maximum, we can drop y to simplify the inequality. This leads directly to the final, conservative bound:$$\boxed{T_{min} \less \frac{2\text{ln}\ N}{(\mathbb{E}\big[\mathbb{E}[M_N]\big])^2}}$$ This final form clearly highlights that $T_{min}$ is bounded above by the square of the asymptotic ceiling of the expected maximum, ensuring a safe estimate for the minimum backtest length.
+
+### Discussion: Implications of the Minimum Backtest Length
+
+Overfitting Risk Increases with Strategy Exploration
+The bound on $T_{min}$ directly highlights that as the number of independent strategies $N$ grows, the required backtest length increases logarithmically. Practically, this means that testing more configurations or tuning more parameters without extending the data history proportionally significantly raises the risk of selecting a strategy that appears profitable purely by chance. Analysts must be transparent about how many variations they tested to allow realistic assessment of overfitting risk.
+
+Setting Realistic Expectations for Backtest Performance
+Theorem 1.2 quantifies the minimum amount of data needed to meaningfully evaluate a strategy’s Sharpe ratio. Even if an in-sample Sharpe ratio looks impressive, this result reminds practitioners that without sufficient historical data, apparent “skill” could simply reflect noise. This provides a concrete metric to calibrate confidence in backtest results and avoid over-interpreting short-term performance.
+
+Guiding Practical Backtest Design and Reporting.
+The inequality $T_{min} \lesssim \frac{2\ln N}{(\mathbb{E}[\mathbb{E}[M_N]])^2}$ offers a practical tool for designing backtests: it informs how much data is required relative to the number of strategies being evaluated. From a reporting standpoint, it encourages analysts to disclose not only the best in-sample performance but also the number of trials and the backtest length, helping decision-makers gauge the robustness of the strategy before committing capital.
+
 
 \newpage
