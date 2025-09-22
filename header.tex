@@ -94,6 +94,30 @@
 \titlespacing*{\subsection}{0pt}{1.25em}{0.75em}
 \titlespacing*{\subsubsection}{0pt}{0.8em}{0.5em}
 
+%--------------------------------
+% Matlab Style Code
+%--------------------------------
+\usepackage{listings}
+\usepackage{xcolor}
+\lstdefinestyle{matlabStyle}{
+    language=Matlab,
+    basicstyle=\ttfamily\tiny,             % small, readable font
+    keywordstyle=\color{blue!70!black}\bfseries, % dark blue keywords
+    commentstyle=\color{gray!50}\itshape,  % medium gray for comments
+    stringstyle=\color{orange!80!black},   % orange for strings
+    numbers=left,                           % line numbers on the left
+    numberstyle=\tiny\color{gray!50},      % small gray numbers
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,                           % single line border
+    rulecolor=\color{black!70},            % border color
+    breaklines=true,                        % auto line wrap
+    backgroundcolor=\color{white},          % white background
+    showstringspaces=false,
+    captionpos=b,                           % caption at bottom
+    tabsize=4,
+    keepspaces=true
+}
 
 %-------------------------------
 % Title page placeholder (use in .qmd front matter)
